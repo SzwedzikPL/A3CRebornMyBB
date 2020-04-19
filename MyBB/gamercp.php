@@ -8,4 +8,5 @@ require_once (__DIR__ . DIRECTORY_SEPARATOR .  'inc' . DIRECTORY_SEPARATOR . 'pl
 use A3C\Application;
 
 $application = new Application($mybb);
-return $application->dispatchRequest();
+echo $application->dispatchRequest();
+exit;

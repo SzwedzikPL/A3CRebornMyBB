@@ -3,6 +3,7 @@
 namespace A3C;
 
 use A3C\Core\Http\Controller;
+use A3C\Core\Http\Response;
 use MyBB;
 
 class Application

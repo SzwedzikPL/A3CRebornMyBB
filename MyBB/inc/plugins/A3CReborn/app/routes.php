@@ -8,5 +8,7 @@
  *      ]
  */
 return [
-
+    'slot-types' => [
+        'get' => [\A3C\Mission\Http\Controllers\SlotTypeController::class, 'index'],
+    ],
 ];
