@@ -1,5 +1,4 @@
 *
 !.gitignore
-!gamercp.php
-!cadrecp.php
+!.htaccess
 !/inc
