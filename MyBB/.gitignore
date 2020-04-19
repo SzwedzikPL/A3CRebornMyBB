@@ -1,4 +1,4 @@
 *
 !.gitignore
-!gamercp.php
+!.htaccess
 !/inc
