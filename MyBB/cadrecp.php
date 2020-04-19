@@ -1,6 +1,6 @@
 <?php
 /**
- * Gamer control panel
+ * Cadre control panel
  */
 
 define("IN_MYBB", 1);
