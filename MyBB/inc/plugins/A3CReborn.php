@@ -51,7 +51,7 @@ function A3CReborn_activate()
 
 }
 
-function myplugin_deactivate()
+function A3CReborn_deactivate()
 {
 
 }
