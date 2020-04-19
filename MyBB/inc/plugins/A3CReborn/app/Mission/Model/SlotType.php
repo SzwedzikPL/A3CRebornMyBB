@@ -5,32 +5,23 @@ namespace A3C\Mission\Model;
 class SlotType
 {
     /**
+     * @var int|null
+     */
+    public ?int $id;
+
+    /**
      * @var string
      */
-    private string $name;
+    public string $name;
 
     /**
      * SlotType constructor.
      * @param string $name
+     * @param int|null $id
      */
-    public function __construct(string $name)
+    public function __construct(string $name, ?int $id = null)
     {
         $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
+        $this->id = $id;
     }
 }

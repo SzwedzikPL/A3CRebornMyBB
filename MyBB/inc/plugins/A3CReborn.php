@@ -6,6 +6,8 @@ if(!defined('IN_MYBB'))
 	die('This file cannot be accessed directly.');
 }
 
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'autoload.php';
+
 function A3CReborn_info()
 {
 	/**
@@ -33,17 +35,20 @@ function A3CReborn_info()
 
 function A3CReborn_install()
 {
-
+    global $db;
+    (new \A3C\Mission\Repositories\SlotTypeRepository($db))->createTable();
 }
 
 function A3CReborn_is_installed()
 {
-    return true;
+    global $db;
+    return (new \A3C\Mission\Repositories\SlotTypeRepository($db))->tableExists();
 }
 
 function A3CReborn_uninstall()
 {
-
+    global $db;
+    (new \A3C\Mission\Repositories\SlotTypeRepository($db))->dropTable();
 }
 
 function A3CReborn_activate()

@@ -4,6 +4,7 @@ namespace A3C;
 
 use A3C\Core\Http\Controller;
 use A3C\Core\Http\Response;
+use A3C\Core\Repository;
 use MyBB;
 
 class Application
@@ -65,8 +66,7 @@ class Application
         $parameters = [];
 
         foreach ($reflection->getParameters() as $param) {
-            $name =  $param->getClass()->getName();
-            $parameters[] = new $name;
+            $parameters[] = $this->resolveDependency($param->getClass()->getName());
         }
 
         return (new $className)->{$methodName}(...$parameters);
@@ -81,5 +81,28 @@ class Application
         $method = $this->mybb->request_method;
 
         return $this->routes[$route][$method];
+    }
+
+    /**
+     * @param string $name
+     * @return mixed
+     * @throws \ReflectionException
+     */
+    private function resolveDependency(string $name)
+    {
+        $reflectionClass = new \ReflectionClass($name);
+
+        /**
+         * Resolving repositories
+         */
+        if($reflectionClass->getParentClass()->getName() === Repository::class) {
+            global $db;
+            return new $name($db);
+        }
+
+        /**
+         * Resolving other classes
+         */
+        else return new $name;
     }
 }
