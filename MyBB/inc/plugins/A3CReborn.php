@@ -38,7 +38,7 @@ function A3CReborn_install()
 
 function A3CReborn_is_installed()
 {
-
+    return true;
 }
 
 function A3CReborn_uninstall()
