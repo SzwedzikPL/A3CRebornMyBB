@@ -3,6 +3,7 @@
 namespace A3C;
 
 use A3C\Core\Http\Controller;
+use A3C\Core\Http\Request;
 use A3C\Core\Http\Response;
 use A3C\Core\Repository;
 use MyBB;
@@ -101,8 +102,38 @@ class Application
         }
 
         /**
+         * Resolve and run request methods
+         */
+        if($reflectionClass->getParentClass()->getName() === Request::class) {
+            $request = new $name();
+            $this->runRequestMethods($request);
+            return $request;
+        }
+
+        /**
          * Resolving other classes
          */
         else return new $name;
     }
+
+    /**
+     * @param Request $request
+     *
+     * Run all requests methods before pass to controller
+     * @return void
+     */
+    private function runRequestMethods(Request $request)
+    {
+        if(!$request->authorize()) {
+            echo (new Response())->setContent(":(")->setStatus(401);
+            exit;
+        }
+
+        if(!$request->validate()) {
+            echo (new Response())->setStatus(422);
+            exit;
+        }
+    }
+
+
 }

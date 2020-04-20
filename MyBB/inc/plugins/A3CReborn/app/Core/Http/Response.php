@@ -42,6 +42,6 @@ class Response
      */
     public function __toString()
     {
-        return '';
+        return (string)$this->content;
     }
 }
