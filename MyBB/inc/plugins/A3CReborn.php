@@ -6,6 +6,7 @@ if(!defined('IN_MYBB'))
 	die('This file cannot be accessed directly.');
 }
 
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'global.php';
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 function A3CReborn_info()
@@ -21,16 +22,7 @@ function A3CReborn_info()
 	 * compatibility: A CSV list of MyBB versions supported. Ex, '121,123', '12*'. Wildcards supported.
 	 * codename: An unique code name to be used by updated from the official MyBB Mods community.
 	 */
-	return array(
-		'name' => 'A3CReborn',
-		'description' => '',
-		'website' => 'https://arma3coop.pl',
-		'author' => 'Arma3Coop.pl',
-		'authorsite' => 'https://github.com/SzwedzikPL/A3CRebornMyBB',
-		'version' => '0.0.1',
-		'compatibility' => '18*',
-		'codename' => ''
-	);
+	return PLUGIN_INFO;
 }
 
 function A3CReborn_install()

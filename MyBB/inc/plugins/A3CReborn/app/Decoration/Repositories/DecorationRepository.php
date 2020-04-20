@@ -7,7 +7,7 @@ use A3C\Core\Repository;
 
 class DecorationRepository extends Repository
 {
-    const TABLE_NAME = 'decorations';
+    const TABLE_NAME =  PLUGIN_PREFIX . 'decorations';
 
     /**
      * @param SlotType $slotType

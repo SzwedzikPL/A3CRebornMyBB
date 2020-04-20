@@ -7,7 +7,7 @@ use A3C\Core\Repository;
 
 class SlotTypeRepository extends Repository
 {
-    const TABLE_NAME = 'slot_types';
+    const TABLE_NAME = PLUGIN_PREFIX . 'slot_types';
 
     /**
      * @param SlotType $slotType
@@ -42,7 +42,7 @@ class SlotTypeRepository extends Repository
      */
     public function getById(int $id): ?SlotType
     {
-        
+
     }
 
     /**
