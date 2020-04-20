@@ -29,20 +29,23 @@ function A3CReborn_install()
 {
     global $db;
     (new \A3C\Mission\Repositories\SlotTypeRepository($db))->createTable();
-		(new \A3C\Decoration\Repositories\DecorationRepository($db))->createTable();
+    (new \A3C\Decoration\Repositories\DecorationRepository($db))->createTable();
 }
 
 function A3CReborn_is_installed()
 {
     global $db;
-    return (new \A3C\Mission\Repositories\SlotTypeRepository($db))->tableExists();
+    return (
+        (new \A3C\Mission\Repositories\SlotTypeRepository($db))->tableExists()
+        && (new \A3C\Decoration\Repositories\DecorationRepository($db))->tableExists()
+    );
 }
 
 function A3CReborn_uninstall()
 {
     global $db;
     (new \A3C\Mission\Repositories\SlotTypeRepository($db))->dropTable();
-		(new \A3C\Mission\Decoration\DecorationRepository($db))->dropTable();
+    (new \A3C\Decoration\Repositories\DecorationRepository($db))->dropTable();
 }
 
 function A3CReborn_activate()
