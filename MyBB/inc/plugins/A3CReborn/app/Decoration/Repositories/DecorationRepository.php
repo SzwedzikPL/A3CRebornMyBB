@@ -10,12 +10,12 @@ class DecorationRepository extends Repository
     const TABLE_NAME =  PLUGIN_PREFIX . 'decorations';
 
     /**
-     * @param SlotType $slotType
-     * @return SlotType
+     * @param Decoration $decoration
+     * @return Decoration
      *
-     * Inserts newly created slot type and returns object with update id field
+     * Saves newly created decoration in repository and returns object with update id field
      */
-    public function insert(Decoration $slotType): SlotType
+    public function save(Decoration $decoration): Decoration
     {
 
     }
@@ -36,32 +36,32 @@ class DecorationRepository extends Repository
 
     /**
      * @param int $id
-     * @return SlotType|null
+     * @return Decoration|null
      *
      * Get slot type with given id
      */
-    public function getById(int $id): ?SlotType
+    public function getById(int $id): ?Decoration
     {
 
     }
 
     /**
-     * @param SlotType $slotType
+     * @param Decoration $decoration
      * @param string $name
      *
      * Updates slot type with given name
      */
-    public function update(SlotType $slotType, string $name)
+    public function update(Decoration $decoration, string $name)
     {
 
     }
 
     /**
-     * @param SlotType $slotType
+     * @param Decoration $decoration
      *
      * Removes slot type permanently
      */
-    public function delete(SlotType $slotType)
+    public function delete(Decoration $decoration)
     {
 
     }

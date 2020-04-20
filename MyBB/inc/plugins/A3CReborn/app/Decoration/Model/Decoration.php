@@ -43,7 +43,7 @@ class Decoration
      * @param int|null $group
      * @param string|null $description
      */
-    public function __construct(?int $id = null, string $name, string $icon, ?string $color, ?int $group, ?string $description)
+    public function __construct(?int $id, string $name, string $icon, ?string $color, ?int $group, ?string $description)
     {
         $this->id = $id;
         $this->name = $name;

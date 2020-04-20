@@ -13,9 +13,9 @@ class SlotTypeRepository extends Repository
      * @param SlotType $slotType
      * @return SlotType
      *
-     * Stores newly created slot type and returns object with update id field
+     * Saves newly created slot type in repository and returns object with update id field
      */
-    public function store(SlotType $slotType): SlotType
+    public function save(SlotType $slotType): SlotType
     {
 
     }
