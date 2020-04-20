@@ -17,7 +17,9 @@ class SlotTypeRepository extends Repository
      */
     public function save(SlotType $slotType): SlotType
     {
-
+        $id = $this->db->insert_query(self::TABLE_NAME, ['name' => $slotType->name]);
+        $slotType->setId($id);
+        return $slotType;
     }
 
     /**

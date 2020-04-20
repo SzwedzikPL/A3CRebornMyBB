@@ -24,4 +24,12 @@ class SlotType
         $this->name = $name;
         $this->id = $id;
     }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
 }

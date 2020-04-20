@@ -3,6 +3,7 @@
 namespace A3C;
 
 use A3C\Core\Http\Controller;
+use A3C\Core\Http\JsonResponse;
 use A3C\Core\Http\Request;
 use A3C\Core\Http\Response;
 use A3C\Core\Repository;
@@ -105,7 +106,9 @@ class Application
          * Resolve and run request methods
          */
         if($reflectionClass->getParentClass()->getName() === Request::class) {
-            $request = new $name();
+            $jsonBody = file_get_contents('php://input');
+            $input = array_merge_recursive($this->mybb->input, json_decode($jsonBody, true));
+            $request = new $name($input);
             $this->runRequestMethods($request);
             return $request;
         }
@@ -130,7 +133,7 @@ class Application
         }
 
         if(!$request->validate()) {
-            echo (new Response())->setStatus(422);
+            echo (new JsonResponse())->setContent($request->errors())->setStatus(422);
             exit;
         }
     }

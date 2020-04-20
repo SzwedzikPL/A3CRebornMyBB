@@ -5,6 +5,7 @@ namespace A3C\Mission\Http\Controllers;
 use A3C\Core\Http\Controller;
 use A3C\Core\Http\JsonResponse;
 use A3C\Mission\Http\Requests\SlotTypeRequest;
+use A3C\Mission\Model\SlotType;
 use A3C\Mission\Repositories\SlotTypeRepository;
 use A3C\Core\Http\Response;
 
@@ -23,9 +24,11 @@ class SlotTypeController extends Controller
     /**
      * @param SlotTypeRequest $request
      * @param SlotTypeRepository $slotTypeRepository
+     * @return Response
      */
     public function create(SlotTypeRequest $request, SlotTypeRepository $slotTypeRepository)
     {
-        
+        $slotType = $slotTypeRepository->save(new SlotType($request->input('name')));
+        return (new JsonResponse())->setContent($slotType);
     }
 }
