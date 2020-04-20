@@ -22,14 +22,14 @@ function A3CReborn_info()
 	 * codename: An unique code name to be used by updated from the official MyBB Mods community.
 	 */
 	return array(
-		'name'			=> 'A3CReborn',
-		'description'	=> '',
-		'website'		=> 'https://arma3coop.pl',
-		'author'		=> 'Arma3Coop.pl',
-		'authorsite'	=> 'https://github.com/SzwedzikPL/A3CRebornMyBB',
-		'version'		=> '0.0.1',
-		'compatibility'	=> '18*',
-		'codename'		=> ''
+		'name' => 'A3CReborn',
+		'description' => '',
+		'website' => 'https://arma3coop.pl',
+		'author' => 'Arma3Coop.pl',
+		'authorsite' => 'https://github.com/SzwedzikPL/A3CRebornMyBB',
+		'version' => '0.0.1',
+		'compatibility' => '18*',
+		'codename' => ''
 	);
 }
 
@@ -37,6 +37,7 @@ function A3CReborn_install()
 {
     global $db;
     (new \A3C\Mission\Repositories\SlotTypeRepository($db))->createTable();
+		(new \A3C\Decoration\Repositories\DecorationRepository($db))->createTable();
 }
 
 function A3CReborn_is_installed()
@@ -49,6 +50,7 @@ function A3CReborn_uninstall()
 {
     global $db;
     (new \A3C\Mission\Repositories\SlotTypeRepository($db))->dropTable();
+		(new \A3C\Mission\Decoration\DecorationRepository($db))->dropTable();
 }
 
 function A3CReborn_activate()

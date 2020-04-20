@@ -2,4 +2,4 @@
 !.gitignore
 !A3CReborn.php
 !/A3CReborn
-!/A3CReborn/*
+!/A3CReborn/**
