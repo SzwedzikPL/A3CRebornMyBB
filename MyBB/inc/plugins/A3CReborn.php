@@ -43,7 +43,18 @@ function A3CReborn_is_installed()
 
 function A3CReborn_uninstall()
 {
-    global $db;
+    global $mybb, $db;
+
+    // Check is this dev instance
+    // For development you can go to
+    // Admin CP / Configuration / Settings / Add new setting
+    // and add Yes / No setting with is_dev_env identifier
+    if (!isset($mybb->settings['is_dev_env']) || !$mybb->settings['is_dev_env']) {
+        flash_message('Nie możesz odinstalować pluginu w środowisku produkcyjnym', 'error');
+        admin_redirect("index.php?module=config-plugins");
+        return;
+    }
+
     (new \A3C\Mission\Repositories\SlotTypeRepository($db))->dropTable();
     (new \A3C\Decoration\Repositories\DecorationRepository($db))->dropTable();
 }
