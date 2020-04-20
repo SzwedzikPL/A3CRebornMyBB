@@ -76,5 +76,5 @@ Options -MultiViews +FollowSymlinks -Indexes
 	RewriteRule ^cadrecp\.(html|php)$ inc/plugins/A3CReborn/cadrecp.php [L,QSA]
 	RewriteRule ^cadrecp\/([a-z\/\-]+)$ inc/plugins/A3CReborn/cadrecp.php?r=$1 [L,QSA]
 
-	RewriteRule ^api\/([a-z\/]+)$ inc/plugins/A3CReborn/api.php?r=$1 [L,QSA]
+	RewriteRule ^api\/([a-z\/]+)$ inc/plugins/A3CReborn/public_api.php?r=$1 [L,QSA]
 </IfModule>
