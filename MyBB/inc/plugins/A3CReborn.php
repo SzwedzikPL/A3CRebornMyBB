@@ -57,3 +57,44 @@ function A3CReborn_deactivate()
 {
 
 }
+
+// Hooks delarations
+$plugins->add_hook("admin_page_output_nav_tabs_start", "A3CReborn_admin_page_output_nav_tabs_start");
+$plugins->add_hook("admin_config_plugins_begin", "A3CReborn_admin_config_plugins_begin");
+
+// Hooks functions
+function A3CReborn_admin_page_output_nav_tabs_start($tabs) {
+    global $page;
+
+    // Exit if not plugins config
+    if ($page->active_module != 'config' || $page->active_action != 'plugins') return $tabs;
+
+    // Check is update needed
+    // TODO
+
+    // Update needed, add tab;
+    $tabs['update_a3creborn'] = array(
+    	'title' => 'Aktualizuj A3CReborn',
+    	'link' => "index.php?module=config-plugins&amp;action=update_a3creborn",
+    	'description' => 'Wykonaj potrzebne aktualizacje A3CReborn takie jak aktualizacje tabel itp.'
+    );
+
+    return $tabs;
+}
+
+function A3CReborn_admin_config_plugins_begin() {
+    global $mybb, $lang, $page;
+
+    // Exit if not our update action
+    if ($mybb->input['action'] != 'update_a3creborn') return;
+
+    // Check if update needed
+    // TODO
+
+    // Perform update
+    // TODO
+
+    // Show confirmation
+    flash_message('Aktualizacja przebiegła pomyślnie', 'success');
+    admin_redirect("index.php?module=config-plugins");
+}
