@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/MyBB/api/')->middleware(['auth'])->group(function() {
+Route::prefix('/gamercp/')->middleware(['auth'])->group(function() {
+    Route::get('/user', \App\Core\Http\Controllers\UserController::class);
+});
+
+Route::prefix('/cadrecp/')->middleware(['auth'])->group(function() {
+    Route::get('/user', \App\Core\Http\Controllers\UserController::class);
+});
+
+Route::prefix('/api/')->group(function() {
     Route::get('/user', \App\Core\Http\Controllers\UserController::class);
 });

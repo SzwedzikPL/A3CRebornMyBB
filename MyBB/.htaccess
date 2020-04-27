@@ -73,10 +73,10 @@ Options -MultiViews +FollowSymlinks -Indexes
 	RewriteRule ^assets\/a3creborn\/(.*)$ inc/plugins/A3CReborn/assets/dist/$1 [L,QSA]
 
 	RewriteRule ^gamercp\.(html|php)$ inc/plugins/A3CReborn/gamercp.php [L,QSA]
-	RewriteRule ^gamercp\/([a-z\/\-]+)$ inc/plugins/A3CReborn/gamercp.php?r=$1 [L,QSA]
+	RewriteRule ^gamercp\/([a-z\/\-]+)$ inc/plugins/A3CReborn/app/public/$1 [L,QSA]
 
 	RewriteRule ^cadrecp\.(html|php)$ inc/plugins/A3CReborn/cadrecp.php [L,QSA]
-	RewriteRule ^cadrecp\/([a-z\/\-]+)$ inc/plugins/A3CReborn/cadrecp.php?r=$1 [L,QSA]
+	RewriteRule ^cadrecp\/([a-z\/\-]+)$ inc/plugins/A3CReborn/app/public/$1 [L,QSA]
 
-	RewriteRule ^api(.*)$ inc/plugins/A3CReborn/api/public/$1 [L,QSA]
+	RewriteRule ^api\/([a-z\/\-]+)$ inc/plugins/A3CReborn/app/public/$1 [L,QSA]
 </IfModule>
