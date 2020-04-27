@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('/MyBB/api/')->group(function() {
-    Route::get('/', function () {
-        dd(Auth::user());
-    });
+Route::prefix('/MyBB/api/')->middleware(['auth'])->group(function() {
+    Route::get('/user', \App\Core\Http\Controllers\UserController::class);
 });
