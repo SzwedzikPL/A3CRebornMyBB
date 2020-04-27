@@ -34,8 +34,7 @@ function A3CReborn_install()
     require_once(__DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'plugin' . DIRECTORY_SEPARATOR . 'templates.php');
 
     // Create tables
-    (new \A3C\Mission\Repositories\SlotTypeRepository($db))->createTable();
-    (new \A3C\Decoration\Repositories\DecorationRepository($db))->createTable();
+    // TODO
 
     // Add templates
     foreach ($A3CReborn_templates as $title => $template) {
@@ -79,8 +78,7 @@ function A3CReborn_uninstall()
     // }
 
     // Remove tables
-    (new \A3C\Mission\Repositories\SlotTypeRepository($db))->dropTable();
-    (new \A3C\Decoration\Repositories\DecorationRepository($db))->dropTable();
+    // TODO
 
     // Remove templates
     $plugin_templates_keys = implode(",", array_map(function ($key) {
