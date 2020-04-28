@@ -19,7 +19,9 @@ function A3CReborn_info()
 	 * compatibility: A CSV list of MyBB versions supported. Ex, '121,123', '12*'. Wildcards supported.
 	 * codename: An unique code name to be used by updated from the official MyBB Mods community.
 	 */
-	return PLUGIN_INFO;
+
+    require_once(__DIR__ . '/A3CReborn/plugin/info.php');
+    return $A3CReborn_info;
 }
 
 function A3CReborn_install()
@@ -127,7 +129,7 @@ function A3CReborn_forumdisplay_threadlist() {
 }
 
 function A3CReborn_newthread_start() {
-    global $mybb, $templates, $lang, $header, $headerinclude, $footer, $fid;
+    global $mybb, $templates, $lang, $header, $headerinclude, $footer, $fid, $A3CReborn_version;
 
     // Exit if not recruitment forum
     if ($fid !== (int)$mybb->settings['a3creborn_recruitment_forum']) return;
@@ -136,6 +138,9 @@ function A3CReborn_newthread_start() {
     add_breadcrumb('Podanie rekrutacyjne', "");
 
     // Evaluate template
+    require_once(__DIR__ . '/A3CReborn/plugin/info.php');
+    $A3CReborn_version = $A3CReborn_info['version'];
+
     eval('$recruitment_form  = "Formularz podania rekrutacyjnego";');
     eval("\$page = \"".$templates->get("a3creborn_recruitment_form_page")."\";");
 

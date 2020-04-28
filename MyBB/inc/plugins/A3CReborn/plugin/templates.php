@@ -9,19 +9,19 @@ function A3CReborn_get_template($name) {
 }
 
 // Template list
-$A3CReborn_templates = array(
-    'a3creborn_forumdisplay_newrecruitmentapplication' => array(
+$A3CReborn_templates = [
+    'a3creborn_forumdisplay_newrecruitmentapplication' => [
         'template' => A3CReborn_get_template('forumdisplay_newrecruitmentapplication'),
         'sid' => '-1',
         'version' => '',
         'dateline' => time()
-    ),
-    'a3creborn_recruitment_form_page' => array(
+    ],
+    'a3creborn_recruitment_form_page' => [
         'template' => A3CReborn_get_template('recruitment_form_page'),
         'sid' => '-1',
         'version' => '',
         'dateline' => time()
-    )
-);
+    ]
+];
 
 ?>
