@@ -6,9 +6,6 @@ if(!defined('IN_MYBB'))
 	die('This file cannot be accessed directly.');
 }
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'global.php';
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'autoload.php';
-
 function A3CReborn_info()
 {
 	/**
