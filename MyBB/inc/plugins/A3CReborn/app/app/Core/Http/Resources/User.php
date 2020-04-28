@@ -14,6 +14,8 @@ class User extends JsonResource
      */
     public function toArray($request)
     {
+        if (!$this->resource) return [];
+
         return [
             'name' => $this->resource->username,
         ];

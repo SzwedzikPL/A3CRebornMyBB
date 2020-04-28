@@ -29,13 +29,13 @@ class MyBBGuard implements Guard
      */
     public function user()
     {
-        if (! is_null($this->user)) {
+        if (!is_null($this->user)) {
             return $this->user;
         }
 
         $authCookie = $_COOKIE[self::MYBB_USER_COOKIE_NAME] ?? null;
 
-        if($authCookie) {
+        if ($authCookie) {
             list($id, $token) = explode('_', $authCookie);
 
             /**
