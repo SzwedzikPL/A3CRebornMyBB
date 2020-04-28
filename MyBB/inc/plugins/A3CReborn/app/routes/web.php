@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix(config('api.url_prefix') . 'gamercp/')->middleware(['auth'])->group(function() {
+Route::prefix(config('mybb.url_prefix') . '/gamercp/')->middleware(['auth'])->group(function() {
     Route::get('/user', \App\Core\Http\Controllers\UserController::class);
 });
 
-Route::prefix(config('api.url_prefix') . 'cadrecp/')->middleware(['auth'])->group(function() {
+Route::prefix(config('mybb.url_prefix') . '/cadrecp/')->middleware(['auth'])->group(function() {
     Route::get('/user', \App\Core\Http\Controllers\UserController::class);
 });
 
-Route::prefix(config('api.url_prefix') . 'api/')->group(function() {
+Route::prefix(config('mybb.url_prefix') . '/api/')->group(function() {
     Route::get('/user', \App\Core\Http\Controllers\UserController::class);
 });
