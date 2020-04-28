@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix(env('APP_API_URL_PREFIX', '/') . 'gamercp/')->middleware(['auth'])->group(function() {
+Route::prefix(config('api.url_prefix') . 'gamercp/')->middleware(['auth'])->group(function() {
     Route::get('/user', \App\Core\Http\Controllers\UserController::class);
 });
 
-Route::prefix(env('APP_API_URL_PREFIX', '/') . 'cadrecp/')->middleware(['auth'])->group(function() {
+Route::prefix(config('api.url_prefix') . 'cadrecp/')->middleware(['auth'])->group(function() {
     Route::get('/user', \App\Core\Http\Controllers\UserController::class);
 });
 
-Route::prefix(env('APP_API_URL_PREFIX', '/') . 'api/')->group(function() {
+Route::prefix(config('api.url_prefix') . 'api/')->group(function() {
     Route::get('/user', \App\Core\Http\Controllers\UserController::class);
 });
