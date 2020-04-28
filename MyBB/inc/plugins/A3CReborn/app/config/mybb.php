@@ -6,7 +6,6 @@ function get_mybb_config() {
     require_once __DIR__.'/../../../../settings.php';
 
     return [
-        'settings' => $settings,
         'url_prefix' => str_replace($settings['homeurl'], '', $settings['bburl'])
     ];
 }
