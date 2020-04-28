@@ -10,8 +10,14 @@ function A3CReborn_get_template($name) {
 
 // Template list
 $A3CReborn_templates = [
-    'a3creborn_forumdisplay_newrecruitmentapplication' => [
-        'template' => A3CReborn_get_template('forumdisplay_newrecruitmentapplication'),
+    'a3creborn_gamercp_page' => [
+        'template' => A3CReborn_get_template('gamercp_page'),
+        'sid' => '-1',
+        'version' => '',
+        'dateline' => time()
+    ],
+    'a3creborn_cadrecp_page' => [
+        'template' => A3CReborn_get_template('cadrecp_page'),
         'sid' => '-1',
         'version' => '',
         'dateline' => time()
@@ -21,7 +27,19 @@ $A3CReborn_templates = [
         'sid' => '-1',
         'version' => '',
         'dateline' => time()
-    ]
+    ],
+    'a3creborn_member_profile' => [
+        'template' => A3CReborn_get_template('member_profile'),
+        'sid' => '-1',
+        'version' => '',
+        'dateline' => time()
+    ],
+    'a3creborn_forumdisplay_newrecruitmentapplication' => [
+        'template' => A3CReborn_get_template('forumdisplay_newrecruitmentapplication'),
+        'sid' => '-1',
+        'version' => '',
+        'dateline' => time()
+    ],
 ];
 
 ?>
