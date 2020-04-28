@@ -99,12 +99,18 @@ function A3CReborn_deactivate()
 }
 
 // Hooks delarations
+$plugins->add_hook("global_start", "A3CReborn_global_start");
+$plugins->add_hook("newthread_start", "A3CReborn_newthread_start");
+$plugins->add_hook("forumdisplay_threadlist", "A3CReborn_forumdisplay_threadlist");
 // $plugins->add_hook("admin_page_output_nav_tabs_start", "A3CReborn_admin_page_output_nav_tabs_start");
 // $plugins->add_hook("admin_config_plugins_begin", "A3CReborn_admin_config_plugins_begin");
 
-$plugins->add_hook("newthread_start", "A3CReborn_newthread_start");
-$plugins->add_hook("forumdisplay_threadlist", "A3CReborn_forumdisplay_threadlist");
+function A3CReborn_global_start() {
+    global $A3CReborn_version;
 
+    require_once(__DIR__ . '/A3CReborn/plugin/info.php');
+    $A3CReborn_version = $A3CReborn_info['version'];
+}
 
 // Hooks functions
 function A3CReborn_forumdisplay_threadlist() {
@@ -117,7 +123,7 @@ function A3CReborn_forumdisplay_threadlist() {
 }
 
 function A3CReborn_newthread_start() {
-    global $mybb, $templates, $lang, $header, $headerinclude, $footer, $fid, $A3CReborn_version;
+    global $mybb, $templates, $lang, $header, $headerinclude, $footer, $fid;
 
     // Exit if not recruitment forum
     if ($fid !== (int)$mybb->settings['a3creborn_recruitment_forum']) return;
@@ -126,10 +132,6 @@ function A3CReborn_newthread_start() {
     add_breadcrumb('Podanie rekrutacyjne', "");
 
     // Evaluate template
-    require_once(__DIR__ . '/A3CReborn/plugin/info.php');
-    $A3CReborn_version = $A3CReborn_info['version'];
-
-    eval('$recruitment_form  = "Formularz podania rekrutacyjnego";');
     eval("\$page = \"".$templates->get("a3creborn_recruitment_form_page")."\";");
 
     output_page($page);

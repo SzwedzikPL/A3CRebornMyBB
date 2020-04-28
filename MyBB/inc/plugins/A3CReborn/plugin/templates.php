@@ -28,8 +28,8 @@ $A3CReborn_templates = [
         'version' => '',
         'dateline' => time()
     ],
-    'a3creborn_member_profile' => [
-        'template' => A3CReborn_get_template('member_profile'),
+    'a3creborn_member_profile_page' => [
+        'template' => A3CReborn_get_template('member_profile_page'),
         'sid' => '-1',
         'version' => '',
         'dateline' => time()
