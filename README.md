@@ -8,7 +8,7 @@ MyBB plugin, scripts & setup for [Arma3Coop.pl](https://arma3coop.pl) community 
 - User notifications.
 - Arma 3 mods repository.
 - Arma 3 server control panel.
-- API for external applications (community launcher, server manager etc.).
+- API for external applications ([community launcher](https://github.com/SzwedzikPL/A3CLauncher), [server manager](https://github.com/SzwedzikPL/A3CRebornServer) etc.).
 
 ## Dev team
 - [SzwedzikPL](https://github.com/SzwedzikPL): project lead, fullstack.
@@ -16,3 +16,7 @@ MyBB plugin, scripts & setup for [Arma3Coop.pl](https://arma3coop.pl) community 
 
 ## Credits
 MyBB setup includes polish language pack by [webboard.pl](https://webboard.pl/) downloaded from [mybb repository](https://community.mybb.com/mods.php?action=view&pid=920).
+
+## License
+[MIT](https://github.com/SzwedzikPL/A3CRebornMyBB/blob/master/LICENSE)  
+The MIT license grant is not for Arma3Coop community logo designs and other community graphic assets.
