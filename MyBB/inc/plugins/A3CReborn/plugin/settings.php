@@ -15,7 +15,7 @@ $A3CReborn_settings = [
         'title' => 'Instancja developerska?',
         'description' => 'Czy jest to forum developerskie?',
         'optionscode' => 'yesno',
-        'value' => 0,
+        'value' => 1,
         'disporder' => 1
     ],
     'a3creborn_recruitment_forum' => [

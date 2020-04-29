@@ -14,16 +14,20 @@ function A3CReborn_info()
 
 function A3CReborn_install()
 {
-    global $db, $mybb;
+    global $db, $mybb, $lang, $cache;
 
     // Require plugin data
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'plugin' . DIRECTORY_SEPARATOR . 'settings.php');
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'plugin' . DIRECTORY_SEPARATOR . 'templates.php');
+    require_once __DIR__.'/A3CReborn/plugin/settings.php';
+    require_once __DIR__.'/A3CReborn/plugin/templates.php';
+    require_once __DIR__.'/A3CReborn/plugin/functions.php';
+
+    // Install theme and set as default
+    install_plugin_theme();
 
     // Create tables
     // TODO
 
-    // Add templates
+    // Add plugin templates
     foreach ($A3CReborn_templates as $title => $template) {
         $template['title'] = $title;
         $db->insert_query('templates', $template);
@@ -38,6 +42,9 @@ function A3CReborn_install()
 
         $db->insert_query('settings', $setting);
     }
+
+    // Setup mybb settings
+    setup_mybb_settings();
 
     // Rebuild settings
     rebuild_settings();
@@ -54,20 +61,24 @@ function A3CReborn_uninstall()
     global $db, $mybb;
 
     // Require plugin data
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'plugin' . DIRECTORY_SEPARATOR . 'settings.php');
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'plugin' . DIRECTORY_SEPARATOR . 'templates.php');
+    require_once __DIR__.'/A3CReborn/plugin/settings.php';
+    require_once __DIR__.'/A3CReborn/plugin/templates.php';
+    require_once __DIR__.'/A3CReborn/plugin/functions.php';
 
-    // // Check is this dev instance
-    // if (!$mybb->settings['is_dev_instance']) {
-    //     flash_message('Nie możesz odinstalować pluginu w środowisku produkcyjnym', 'error');
-    //     admin_redirect("index.php?module=config-plugins");
-    //     return;
-    // }
+    // Check is this dev instance
+    if (!$mybb->settings['a3creborn_is_dev_instance']) {
+        flash_message('Nie możesz odinstalować pluginu w środowisku produkcyjnym', 'error');
+        admin_redirect("index.php?module=config-plugins");
+        return;
+    }
+
+    // Remove theme
+    remove_plugin_theme();
 
     // Remove tables
     // TODO
 
-    // Remove templates
+    // Remove plugin templates
     $plugin_templates_keys = implode(",", array_map(function ($key) {
         return "'$key'";
     }, array_keys($A3CReborn_templates)));
