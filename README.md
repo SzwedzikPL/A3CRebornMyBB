@@ -15,4 +15,4 @@ MyBB plugin, scripts & setup for [Arma3Coop.pl](https://arma3coop.pl) community 
 - [Harven](https://github.com/michalpietryka): database, laravel backend.
 
 ## Credits
-Plugin is using polish language pack by [webboard.pl](https://webboard.pl/) downloaded from [mybb repository](https://community.mybb.com/mods.php?action=view&pid=920).
+MyBB setup includes polish language pack by [webboard.pl](https://webboard.pl/) downloaded from [mybb repository](https://community.mybb.com/mods.php?action=view&pid=920).
