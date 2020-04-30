@@ -42,6 +42,9 @@ function A3CReborn_install()
         $db->insert_query('settings', $setting);
     }
 
+    // Force classic post display
+    $db->update_query("users", ['classicpostbit' => 1]);
+
     // Setup mybb settings
     setup_mybb_settings();
 
