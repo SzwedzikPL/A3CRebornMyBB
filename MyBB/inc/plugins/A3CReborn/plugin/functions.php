@@ -15,6 +15,23 @@ function setup_mybb_settings() {
     }
 }
 
+function create_plugin_tables() {
+    global $db;
+
+    $db->write_query("CREATE TABLE ".TABLE_PREFIX."a3creborn_userscache (
+        uid int unsigned NOT NULL,
+        type varchar(100) NOT NULL,
+        cache mediumtext NOT NULL,
+        PRIMARY KEY (uid)
+    ) ENGINE=MyISAM;");
+}
+
+function remove_plugin_tables() {
+    global $db;
+
+    $db->write_query("DROP TABLE IF EXISTS ".TABLE_PREFIX."a3creborn_userscache;");
+}
+
 // Install A3CReborn theme & set it as default for all users
 function install_plugin_theme() {
     global $db, $mybb, $lang, $cache;

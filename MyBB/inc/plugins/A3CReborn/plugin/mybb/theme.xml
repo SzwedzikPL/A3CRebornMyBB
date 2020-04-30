@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <theme name="A3CReborn" version="1822">
 	<properties>
-		<templateset><![CDATA[-2]]></templateset>
+		<templateset><![CDATA[16]]></templateset>
 		<imgdir><![CDATA[images]]></imgdir>
 		<logo><![CDATA[images/logo.png]]></logo>
 		<tablespace><![CDATA[5]]></tablespace>
@@ -7147,7 +7147,7 @@ if(use_xmlhttprequest == "1")
 </table>
 <br />]]></template>
 		<template name="portal_whosonline_memberbit" version="1818"><![CDATA[<a href="{$mybb->settings['bburl']}/{$user['profilelink']}">{$user['username']}</a>{$invisiblemark}]]></template>
-		<template name="postbit" version="1813"><![CDATA[{$ignore_bit}{$deleted_bit}
+		<template name="postbit" version="1822"><![CDATA[{$ignore_bit}{$deleted_bit}
 <a name="pid{$post['pid']}" id="pid{$post['pid']}"></a>
 <div class="post {$unapproved_shade}" style="{$post_visibility}" id="post_{$post['pid']}">
 <div class="post_author">
@@ -7156,7 +7156,6 @@ if(use_xmlhttprequest == "1")
 			<strong><span class="largetext">{$post['profilelink']}</span></strong> {$post['onlinestatus']}<br />
 			<span class="smalltext">
 				{$post['usertitle']}<br />
-				{$post['userstars']}
 				{$post['groupimage']}
 			</span>
 	</div>
@@ -7174,8 +7173,7 @@ if(use_xmlhttprequest == "1")
 	<div class="post_body scaleimages" id="pid_{$post['pid']}">
 		{$post['message']}
 	</div>
-	{$post['attachments']}
-	{$post['signature']}
+	{$post['a3creborn_badges']}
 	<div class="post_meta" id="post_meta_{$post['pid']}">
 		{$post['iplogged']}
 		<div class="float_right">
