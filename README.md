@@ -1,5 +1,5 @@
 # A3C Reborn MyBB
-MyBB plugin, scripts & setup for [Arma3Coop.pl](https://arma3coop.pl) community forum.
+MyBB theme, plugin, scripts & setup for [Arma3Coop.pl](https://arma3coop.pl) community forum.
 
 ## Main features
 - Arma 3 missions organization.

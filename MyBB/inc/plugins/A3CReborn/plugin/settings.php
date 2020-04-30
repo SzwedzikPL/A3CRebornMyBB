@@ -15,7 +15,7 @@ $A3CReborn_settings = [
         'title' => 'Instancja developerska?',
         'description' => 'Czy jest to forum developerskie?',
         'optionscode' => 'yesno',
-        'value' => (int)in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']),
+        'value' => is_dev_instance(),
         'disporder' => 1
     ],
     'a3creborn_recruitment_forum' => [

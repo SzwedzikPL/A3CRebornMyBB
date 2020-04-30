@@ -1,12 +1,14 @@
 <?php
 
+function is_dev_instance() {
+    return (int)in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']);
+}
+
 // Setup mybb settings for A3C board
 function setup_mybb_settings() {
     global $db;
 
-    $mybb_settings = [
-
-    ];
+    require_once __DIR__.'/mybb/settings.php';
 
     foreach ($mybb_settings as $setting => $value) {
         $db->update_query("settings", ['value' => $value], "name='".$setting."'");
@@ -17,9 +19,9 @@ function setup_mybb_settings() {
 function install_plugin_theme() {
     global $db, $mybb, $lang, $cache;
 
-    require_once __DIR__."/../../../../admin/inc/functions_themes.php";
+    require_once MYBB_ROOT."/admin/inc/functions_themes.php";
 
-    $theme_contents = @file_get_contents(__DIR__.'/theme/theme.xml');
+    $theme_contents = @file_get_contents(__DIR__.'/mybb/theme.xml');
 
     if (!trim($theme_contents)) {
         flash_message('Błąd odczytu pliku szablonu', 'error');
@@ -79,7 +81,7 @@ function install_plugin_theme() {
 function remove_plugin_theme() {
     global $db, $mybb, $lang, $cache;
 
-    require_once __DIR__."/../../../../admin/inc/functions_themes.php";
+    require_once MYBB_ROOT."/admin/inc/functions_themes.php";
 
     $query = $db->simple_select("themes", "*", "name='A3CReborn'");
     $theme = $db->fetch_array($query);

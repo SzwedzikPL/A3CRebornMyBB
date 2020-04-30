@@ -17,9 +17,9 @@ function A3CReborn_install()
     global $db, $mybb, $lang, $cache;
 
     // Require plugin data
+    require_once __DIR__.'/A3CReborn/plugin/functions.php';
     require_once __DIR__.'/A3CReborn/plugin/settings.php';
     require_once __DIR__.'/A3CReborn/plugin/templates.php';
-    require_once __DIR__.'/A3CReborn/plugin/functions.php';
 
     // Install theme and set as default
     install_plugin_theme();
@@ -61,9 +61,10 @@ function A3CReborn_uninstall()
     global $db, $mybb;
 
     // Require plugin data
+    require_once __DIR__.'/A3CReborn/plugin/functions.php';
     require_once __DIR__.'/A3CReborn/plugin/settings.php';
     require_once __DIR__.'/A3CReborn/plugin/templates.php';
-    require_once __DIR__.'/A3CReborn/plugin/functions.php';
+
 
     // Check is this dev instance
     if (!$mybb->settings['a3creborn_is_dev_instance']) {
@@ -79,9 +80,9 @@ function A3CReborn_uninstall()
     // TODO
 
     // Remove plugin templates
-    $plugin_templates_keys = implode(",", array_map(function ($key) {
-        return "'$key'";
-    }, array_keys($A3CReborn_templates)));
+    $plugin_templates_keys = implode(",", array_map(function ($template) {
+        return "'{$template['title']}'";
+    }, $A3CReborn_templates));
 
     $db->delete_query('templates', "title IN ($plugin_templates_keys)");
 
