@@ -6,6 +6,7 @@ use App\Badge\Model\Badge;
 use App\Badge\Model\BadgeGroup;
 use App\Badge\Policies\BadgeGroupPolicy;
 use App\Badge\Policies\BadgePolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class BadgeServiceProvider extends ServiceProvider
