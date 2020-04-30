@@ -14,18 +14,21 @@ function A3CReborn_info()
 
 function A3CReborn_install()
 {
-    global $db, $mybb;
+    global $db, $mybb, $lang, $cache;
 
     // Require plugin data
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'plugin' . DIRECTORY_SEPARATOR . 'settings.php');
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'plugin' . DIRECTORY_SEPARATOR . 'templates.php');
+    require_once __DIR__.'/A3CReborn/plugin/functions.php';
+    require_once __DIR__.'/A3CReborn/plugin/settings.php';
+    require_once __DIR__.'/A3CReborn/plugin/templates.php';
+
+    // Install theme and set as default
+    install_plugin_theme();
 
     // Create tables
     // TODO
 
-    // Add templates
-    foreach ($A3CReborn_templates as $title => $template) {
-        $template['title'] = $title;
+    // Add plugin templates
+    foreach ($A3CReborn_templates as $template) {
         $db->insert_query('templates', $template);
     }
 
@@ -38,6 +41,9 @@ function A3CReborn_install()
 
         $db->insert_query('settings', $setting);
     }
+
+    // Setup mybb settings
+    setup_mybb_settings();
 
     // Rebuild settings
     rebuild_settings();
@@ -54,23 +60,28 @@ function A3CReborn_uninstall()
     global $db, $mybb;
 
     // Require plugin data
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'plugin' . DIRECTORY_SEPARATOR . 'settings.php');
-    require_once(__DIR__ . DIRECTORY_SEPARATOR . 'A3CReborn' . DIRECTORY_SEPARATOR . 'plugin' . DIRECTORY_SEPARATOR . 'templates.php');
+    require_once __DIR__.'/A3CReborn/plugin/functions.php';
+    require_once __DIR__.'/A3CReborn/plugin/settings.php';
+    require_once __DIR__.'/A3CReborn/plugin/templates.php';
 
-    // // Check is this dev instance
-    // if (!$mybb->settings['is_dev_instance']) {
-    //     flash_message('Nie możesz odinstalować pluginu w środowisku produkcyjnym', 'error');
-    //     admin_redirect("index.php?module=config-plugins");
-    //     return;
-    // }
+
+    // Check is this dev instance
+    if (!$mybb->settings['a3creborn_is_dev_instance']) {
+        flash_message('Nie możesz odinstalować pluginu w środowisku produkcyjnym', 'error');
+        admin_redirect("index.php?module=config-plugins");
+        return;
+    }
+
+    // Remove theme
+    remove_plugin_theme();
 
     // Remove tables
     // TODO
 
-    // Remove templates
-    $plugin_templates_keys = implode(",", array_map(function ($key) {
-        return "'$key'";
-    }, array_keys($A3CReborn_templates)));
+    // Remove plugin templates
+    $plugin_templates_keys = implode(",", array_map(function ($template) {
+        return "'{$template['title']}'";
+    }, $A3CReborn_templates));
 
     $db->delete_query('templates', "title IN ($plugin_templates_keys)");
 
@@ -99,12 +110,18 @@ function A3CReborn_deactivate()
 }
 
 // Hooks delarations
+$plugins->add_hook("global_start", "A3CReborn_global_start");
+$plugins->add_hook("newthread_start", "A3CReborn_newthread_start");
+$plugins->add_hook("forumdisplay_threadlist", "A3CReborn_forumdisplay_threadlist");
 // $plugins->add_hook("admin_page_output_nav_tabs_start", "A3CReborn_admin_page_output_nav_tabs_start");
 // $plugins->add_hook("admin_config_plugins_begin", "A3CReborn_admin_config_plugins_begin");
 
-$plugins->add_hook("newthread_start", "A3CReborn_newthread_start");
-$plugins->add_hook("forumdisplay_threadlist", "A3CReborn_forumdisplay_threadlist");
+function A3CReborn_global_start() {
+    global $A3CReborn_version;
 
+    require_once(__DIR__ . '/A3CReborn/plugin/info.php');
+    $A3CReborn_version = $A3CReborn_info['version'];
+}
 
 // Hooks functions
 function A3CReborn_forumdisplay_threadlist() {
@@ -117,7 +134,7 @@ function A3CReborn_forumdisplay_threadlist() {
 }
 
 function A3CReborn_newthread_start() {
-    global $mybb, $templates, $lang, $header, $headerinclude, $footer, $fid, $A3CReborn_version;
+    global $mybb, $templates, $lang, $header, $headerinclude, $footer, $fid;
 
     // Exit if not recruitment forum
     if ($fid !== (int)$mybb->settings['a3creborn_recruitment_forum']) return;
@@ -126,10 +143,6 @@ function A3CReborn_newthread_start() {
     add_breadcrumb('Podanie rekrutacyjne', "");
 
     // Evaluate template
-    require_once(__DIR__ . '/A3CReborn/plugin/info.php');
-    $A3CReborn_version = $A3CReborn_info['version'];
-
-    eval('$recruitment_form  = "Formularz podania rekrutacyjnego";');
     eval("\$page = \"".$templates->get("a3creborn_recruitment_form_page")."\";");
 
     output_page($page);

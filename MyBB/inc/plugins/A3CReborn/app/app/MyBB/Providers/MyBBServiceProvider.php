@@ -39,7 +39,6 @@ class MyBBServiceProvider extends ServiceProvider
     {
         global $settings;
         include __DIR__.'/../../../../../../settings.php';
-        config(['mybb.settings' => $settings]);
         config(['mybb.url_prefix' => str_replace($settings['homeurl'], '', $settings['bburl'])]);
     }
 }

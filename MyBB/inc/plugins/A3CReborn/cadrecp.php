@@ -6,7 +6,7 @@
 define("IN_MYBB", 1);
 define('THIS_SCRIPT', 'cadrecp.php');
 
-require_once ('..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .  'global.php');
+require_once (__DIR__.'/../../../global.php');
 
 // Add a breadcrumb
 add_breadcrumb('Panel kadry', "cadrecp.php");
