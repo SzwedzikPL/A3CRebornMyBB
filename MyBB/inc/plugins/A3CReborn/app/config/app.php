@@ -165,6 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
+        \App\MyBB\Providers\MyBBServiceProvider::class,
+        \App\Core\Providers\BadgeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -174,8 +176,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Core\Providers\EventServiceProvider::class,
         App\Core\Providers\RouteServiceProvider::class,
-
-        \App\MyBB\Providers\MyBBServiceProvider::class,
     ],
 
     /*

@@ -2,6 +2,7 @@
 
 namespace App\Core\Http\Resources;
 
+use App\Badge\Http\Resources\BadgeCollection as BadgeCollectionResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class User extends JsonResource
@@ -18,6 +19,7 @@ class User extends JsonResource
 
         return [
             'name' => $this->resource->username,
+            'badges' => new BadgeCollectionResource($this->resource->badges)
         ];
     }
 }
