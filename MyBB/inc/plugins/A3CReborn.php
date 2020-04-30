@@ -113,6 +113,7 @@ function A3CReborn_deactivate()
 $plugins->add_hook("global_start", "A3CReborn_global_start");
 $plugins->add_hook("newthread_start", "A3CReborn_newthread_start");
 $plugins->add_hook("forumdisplay_threadlist", "A3CReborn_forumdisplay_threadlist");
+$plugins->add_hook("postbit", "A3CReborn_postbit");
 // $plugins->add_hook("admin_page_output_nav_tabs_start", "A3CReborn_admin_page_output_nav_tabs_start");
 // $plugins->add_hook("admin_config_plugins_begin", "A3CReborn_admin_config_plugins_begin");
 
@@ -148,6 +149,13 @@ function A3CReborn_newthread_start() {
     output_page($page);
     exit();
 }
+
+function A3CReborn_postbit($post) {
+    // inject user rank & badges into post
+
+    return $post;
+}
+
 
 // function A3CReborn_admin_page_output_nav_tabs_start($tabs) {
 //     global $page;
