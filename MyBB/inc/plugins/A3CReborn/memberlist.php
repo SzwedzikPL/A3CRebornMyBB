@@ -9,7 +9,7 @@ define('THIS_SCRIPT', 'memberlist.php');
 require_once (__DIR__.'/../../../global.php');
 
 // Add a breadcrumb
-add_breadcrumb('Członkowie A3C', "memberlist.php");
+add_breadcrumb('Członkowie społeczności', "memberlist.php");
 
 // Process page
 eval('$page  = "' . $templates->get('a3creborn_memberlist_page') . '";');

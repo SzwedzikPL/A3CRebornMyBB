@@ -28,8 +28,7 @@ function A3CReborn_install()
     // TODO
 
     // Add plugin templates
-    foreach ($A3CReborn_templates as $title => $template) {
-        $template['title'] = $title;
+    foreach ($A3CReborn_templates as $template) {
         $db->insert_query('templates', $template);
     }
 

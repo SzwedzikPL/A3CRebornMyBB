@@ -9,7 +9,7 @@ define('THIS_SCRIPT', 'stats.php');
 require_once (__DIR__.'/../../../global.php');
 
 // Add a breadcrumb
-add_breadcrumb('Statystyki A3C', "stats.php");
+add_breadcrumb('Statystyki społeczności', "stats.php");
 
 // Process page
 eval('$page  = "' . $templates->get('a3creborn_stats_page') . '";');
