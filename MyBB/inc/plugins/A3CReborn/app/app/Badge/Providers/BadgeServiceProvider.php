@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Core\Providers;
+namespace App\Badge\Providers;
 
 use App\Badge\Model\Badge;
 use App\Badge\Model\BadgeGroup;

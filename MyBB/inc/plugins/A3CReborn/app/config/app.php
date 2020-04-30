@@ -166,7 +166,7 @@ return [
          * Package Service Providers...
          */
         \App\MyBB\Providers\MyBBServiceProvider::class,
-        \App\Core\Providers\BadgeServiceProvider::class,
+        \App\Badge\Providers\BadgeServiceProvider::class,
 
         /*
          * Application Service Providers...
