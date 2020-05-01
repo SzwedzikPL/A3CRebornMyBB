@@ -2,9 +2,11 @@
 
 namespace App\Badge\Http\Controllers;
 
+use App\Badge\Http\Requests\BadgeRequest;
 use App\Badge\Http\Resources\BadgeCollection;
 use App\Badge\Model\Badge;
-use Illuminate\Http\Request;
+use App\Badge\Http\Resources\Badge as BadgeResource;
+use App\Core\Http\Controllers\Controller;
 
 class BadgeController extends Controller
 {
@@ -27,22 +29,12 @@ class BadgeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param BadgeRequest $request
+     * @return void
      */
-    public function store(Request $request)
+    public function store(BadgeRequest $request)
     {
         //
     }
@@ -51,32 +43,21 @@ class BadgeController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Badge\Model\Badge  $badge
-     * @return \Illuminate\Http\Response
+     * @return BadgeResource|\Illuminate\Http\Response
      */
     public function show(Badge $badge)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Badge\Model\Badge  $badge
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Badge $badge)
-    {
-        //
+        return new BadgeResource($badge);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Badge\Model\Badge  $badge
-     * @return \Illuminate\Http\Response
+     * @param BadgeRequest $request
+     * @param \App\Badge\Model\Badge $badge
+     * @return void
      */
-    public function update(Request $request, Badge $badge)
+    public function update(BadgeRequest $request, Badge $badge)
     {
         //
     }
@@ -84,11 +65,13 @@ class BadgeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Badge\Model\Badge  $badge
-     * @return \Illuminate\Http\Response
+     * @param \App\Badge\Model\Badge $badge
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|void
+     * @throws \Exception
      */
     public function destroy(Badge $badge)
     {
-        //
+        $badge->delete();
+        return response('Deleted', 202);
     }
 }

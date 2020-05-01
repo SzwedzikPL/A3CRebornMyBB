@@ -6,6 +6,6 @@ trait HasBadgeTrait
 {
     public function badges()
     {
-        return $this->belongsToMany(Badge::class);
+        return $this->belongsToMany(Badge::class, null, 'user_id');
     }
 }

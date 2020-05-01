@@ -2,8 +2,11 @@
 
 namespace App\Badge\Http\Controllers;
 
+use App\Badge\Http\Requests\BadgeGroupRequest;
+use App\Badge\Http\Resources\BadgeGroupCollection;
 use App\Badge\Model\BadgeGroup;
-use Illuminate\Http\Request;
+use App\Badge\Http\Resources\BadgeGroup as BadgeGroupResource;
+use App\Core\Http\Controllers\Controller;
 
 class BadgeGroupController extends Controller
 {
@@ -18,76 +21,59 @@ class BadgeGroupController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return BadgeGroupCollection|\Illuminate\Http\Response
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return new BadgeGroupCollection(BadgeGroup::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param BadgeGroupRequest $request
+     * @return BadgeGroupResource|void
      */
-    public function store(Request $request)
+    public function store(BadgeGroupRequest $request)
     {
-        //
+        $badgeGroup = BadgeGroup::create($request->validated());
+        return new BadgeGroupResource($badgeGroup);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Badge\Model\BadgeGroup  $badgeGroup
-     * @return \Illuminate\Http\Response
+     * @return BadgeGroupResource|\Illuminate\Http\Response
      */
     public function show(BadgeGroup $badgeGroup)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Badge\Model\BadgeGroup  $badgeGroup
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(BadgeGroup $badgeGroup)
-    {
-        //
+        return new BadgeGroupResource($badgeGroup);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Badge\Model\BadgeGroup  $badgeGroup
-     * @return \Illuminate\Http\Response
+     * @param BadgeGroupRequest $request
+     * @param \App\Badge\Model\BadgeGroup $badgeGroup
+     * @return BadgeGroupResource|void
      */
-    public function update(Request $request, BadgeGroup $badgeGroup)
+    public function update(BadgeGroupRequest $request, BadgeGroup $badgeGroup)
     {
-        //
+        $badgeGroup->fill($request->validated())->save();
+        return new BadgeGroupResource($badgeGroup);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Badge\Model\BadgeGroup  $badgeGroup
-     * @return \Illuminate\Http\Response
+     * @param \App\Badge\Model\BadgeGroup $badgeGroup
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response|void
+     * @throws \Exception
      */
     public function destroy(BadgeGroup $badgeGroup)
     {
-        //
+        $badgeGroup->delete();
+        return response('Deleted', 202);
     }
 }

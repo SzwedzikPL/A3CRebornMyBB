@@ -11,6 +11,14 @@ class BadgeGroupPolicy
     use HandlesAuthorization;
 
     /**
+     * @return bool
+     */
+    public function before()
+    {
+        return true;
+    }
+
+    /**
      * Determine whether the user can view any models.
      *
      * @param  \App\Core\Model\User  $user

@@ -24,7 +24,9 @@ class BadgeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'color' => 'required|string|max:6',
+            'badge_group_id' => 'required|integer|exists:badge_groups,id',
         ];
     }
 }
