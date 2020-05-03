@@ -23,7 +23,9 @@ $A3CReborn_template_list = [
     // User profile page template
     'member_profile_page',
     // Recruitment forum application button template
-    'forumdisplay_newrecruitmentapplication'
+    'forumdisplay_newrecruitmentapplication',
+    // Postbit badge template
+    'postbit_badge'
 ];
 
 // Process template declarations
