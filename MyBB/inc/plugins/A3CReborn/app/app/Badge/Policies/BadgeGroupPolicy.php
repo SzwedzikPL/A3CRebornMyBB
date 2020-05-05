@@ -2,7 +2,7 @@
 
 namespace App\Badge\Policies;
 
-use App\App\Badge\Model\BadgeGroup;
+use App\Badge\Model\BadgeGroup;
 use App\Core\Model\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -15,7 +15,9 @@ class BadgeGroupPolicy
      */
     public function before()
     {
-        return true;
+        if(auth()->user()->isAdmin()) {
+            return true;
+        }
     }
 
     /**

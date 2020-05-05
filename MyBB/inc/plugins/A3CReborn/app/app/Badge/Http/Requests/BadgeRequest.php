@@ -2,6 +2,7 @@
 
 namespace App\Badge\Http\Requests;
 
+use App\Badge\Model\Badge;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BadgeRequest extends FormRequest
@@ -13,7 +14,7 @@ class BadgeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->user()->can('create', Badge::class);
     }
 
     /**

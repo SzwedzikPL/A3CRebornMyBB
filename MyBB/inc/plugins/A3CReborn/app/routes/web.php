@@ -21,7 +21,7 @@ Route::prefix(config('mybb.url_prefix') . '/cadrecp/')->middleware(['auth'])->gr
     Route::post('badges/promote', \App\Badge\Http\Controllers\BadgePromoteController::class);
     Route::post('badges/take', \App\Badge\Http\Controllers\BadgeTakeController::class);
     Route::resource('badges', \App\Badge\Http\Controllers\BadgeController::class);
-    Route::resource('badge-groups', \App\Badge\Http\Controllers\BadgeController::class);
+    Route::resource('badge-groups', \App\Badge\Http\Controllers\BadgeGroupController::class);
 });
 
 Route::prefix(config('mybb.url_prefix') . '/api/')->group(function() {

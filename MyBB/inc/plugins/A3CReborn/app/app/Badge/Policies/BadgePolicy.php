@@ -2,7 +2,7 @@
 
 namespace App\Badge\Policies;
 
-use App\App\Badge\Model\Badge;
+use App\Badge\Model\Badge;
 use App\Core\Model\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -15,7 +15,9 @@ class BadgePolicy
      */
     public function before()
     {
-        return true;
+        if(auth()->user()->isAdmin()) {
+            return true;
+        }
     }
 
     /**
@@ -116,6 +118,28 @@ class BadgePolicy
      * @param User $user
      */
     public function take(User $user)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can promote to badge
+     *
+     * @param User $user
+     * @param Badge $badge
+     */
+    public function promoteBadge(User $user, Badge $badge)
+    {
+        //
+    }
+
+    /**
+     * Determine whether the user can take badge
+     *
+     * @param User $user
+     * @param Badge $badge
+     */
+    public function takeBadge(User $user, Badge $badge)
     {
         //
     }

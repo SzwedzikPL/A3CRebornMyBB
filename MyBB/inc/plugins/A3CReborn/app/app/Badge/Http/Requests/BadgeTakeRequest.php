@@ -2,6 +2,7 @@
 
 namespace App\Badge\Http\Requests;
 
+use App\Badge\Model\Badge;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BadgeTakeRequest extends FormRequest
@@ -13,7 +14,9 @@ class BadgeTakeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $badge = Badge::find($this->badge_id);
+
+        return $badge && $this->user()->can('takeBadge', $badge);
     }
 
     /**
@@ -24,7 +27,8 @@ class BadgeTakeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'badge_id' => 'required|integer|exists:badges,id',
+            'loser_id' => 'required|integer',
         ];
     }
 }
