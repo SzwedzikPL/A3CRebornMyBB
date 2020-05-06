@@ -70,7 +70,7 @@ Options -MultiViews +FollowSymlinks -Indexes
 # A3C Reborn URL rewrites
 #
 <IfModule mod_rewrite.c>
-	RewriteRule ^assets\/a3creborn\/(.*)$ inc/plugins/A3CReborn/assets/dist/$1 [L,QSA]
+	RewriteRule ^assets\/a3creborn\/(.*)$ inc/plugins/A3CReborn/webapp/dist/$1 [L,QSA]
 
 	RewriteRule ^memberlist\.(html|php)$ inc/plugins/A3CReborn/memberlist.php [L,QSA]
 

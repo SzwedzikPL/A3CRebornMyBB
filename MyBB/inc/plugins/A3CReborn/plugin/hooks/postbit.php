@@ -1,6 +1,7 @@
 <?php
 
 // inject user rank & badges into post
+$plugins->add_hook("postbit", "A3CReborn_postbit");
 function A3CReborn_postbit($post) {
     global $db, $templates, $pids, $A3CReborn_userscache;
 

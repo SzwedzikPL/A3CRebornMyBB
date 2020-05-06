@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Array of information about the plugin.
  * name: The name of the plugin
  * description: Description of what the plugin does
@@ -11,7 +11,8 @@
  * compatibility: A CSV list of MyBB versions supported. Ex, '121,123', '12*'. Wildcards supported.
  * codename: An unique code name to be used by updated from the official MyBB Mods community.
  */
-$A3CReborn_info = [
+
+return [
     'name' => 'A3CReborn',
     'description' => 'Modyfikacja MyBB na potrzeby społeczności Arma3Coop.pl',
     'website' => 'https://github.com/SzwedzikPL/A3CRebornMyBB',
@@ -21,5 +22,3 @@ $A3CReborn_info = [
     'compatibility' => '18*',
     'codename' => ''
 ];
-
-?>

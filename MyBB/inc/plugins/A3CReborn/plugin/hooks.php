@@ -1,17 +1,17 @@
 <?php
 
-// hook: global_start
-// include plugin version in all templates
+// global_start
+// includes plugin version in global vars for templates
 $plugins->add_hook("global_start", "A3CReborn_global_start");
 function A3CReborn_global_start() {
     global $A3CReborn_version;
 
-    require_once __DIR__ . '/info.php';
-    $A3CReborn_version = $A3CReborn_info['version'];
+    $info = require_once A3CREBORN_PLUGIN_ROOT.'/info.php';
+    $A3CReborn_version = $info['version'];
 }
 
-// hook: newthread_start
-// replace new thread buttons in recruitment forum
+// newthread_start
+// replaces new thread buttons in recruitment forum
 $plugins->add_hook("newthread_start", "A3CReborn_newthread_start");
 function A3CReborn_forumdisplay_threadlist() {
     global $mybb, $templates, $newthread, $fid;
@@ -22,8 +22,8 @@ function A3CReborn_forumdisplay_threadlist() {
     eval("\$newthread = \"".$templates->get("a3creborn_forumdisplay_newrecruitmentapplication")."\";");
 }
 
-// hook: forumdisplay_threadlist
-// replace new thread form with recruitment form in recruitment forum
+// forumdisplay_threadlist
+// replaces new thread form with recruitment form in recruitment forum
 $plugins->add_hook("forumdisplay_threadlist", "A3CReborn_forumdisplay_threadlist");
 function A3CReborn_newthread_start() {
     global $mybb, $templates, $lang, $header, $headerinclude, $footer, $fid;
@@ -41,49 +41,59 @@ function A3CReborn_newthread_start() {
     exit();
 }
 
-// hook: postbit
-// include plugin data in posts
-$plugins->add_hook("postbit", "A3CReborn_postbit");
-require_once __DIR__ . '/hooks/postbit.php';
+// postbit
+// includes plugin data in posts
+require_once A3CREBORN_PLUGIN_ROOT.'/hooks/postbit.php';
 
+// admin_page_output_nav_tabs_start
+// Adds update plugin button if needed
+$plugins->add_hook("admin_page_output_nav_tabs_start", "A3CReborn_admin_page_output_nav_tabs_start");
+function A3CReborn_admin_page_output_nav_tabs_start($tabs) {
+    global $page;
 
-// $plugins->add_hook("admin_page_output_nav_tabs_start", "A3CReborn_admin_page_output_nav_tabs_start");
-// $plugins->add_hook("admin_config_plugins_begin", "A3CReborn_admin_config_plugins_begin");
-// function A3CReborn_admin_page_output_nav_tabs_start($tabs) {
-//     global $page;
-//
-//     // Exit if not plugins config
-//     if ($page->active_module != 'config' || $page->active_action != 'plugins') return $tabs;
-//
-//     // Check is update needed
-//     // TODO
-//
-//     // Update needed, add tab;
-//     $tabs['update_a3creborn'] = array(
-//     	'title' => 'Aktualizuj A3CReborn',
-//     	'link' => "index.php?module=config-plugins&amp;action=update_a3creborn",
-//     	'description' => 'Wykonaj potrzebne aktualizacje A3CReborn takie jak aktualizacje tabel itp.'
-//     );
-//
-//     return $tabs;
-// }
-//
-// function A3CReborn_admin_config_plugins_begin() {
-//     global $mybb, $lang, $page;
-//
-//     // Exit if not our update action
-//     if ($mybb->input['action'] != 'update_a3creborn') return;
-//
-//     // Check if update needed
-//     // TODO
-//
-//     // Perform update
-//     // TODO
-//
-//     // Show confirmation
-//     flash_message('Aktualizacja przebiegła pomyślnie', 'success');
-//     admin_redirect("index.php?module=config-plugins");
-// }
+    // Exit if not plugins config
+    if ($page->active_module != 'config' || $page->active_action != 'plugins') return $tabs;
 
+    require A3CREBORN_PLUGIN_ROOT.'/functions.php';
 
-?>
+    // Check is update needed
+    if (!is_plugin_update_needed()) return $tabs;
+
+    // Update needed, add tab;
+    $tabs['update_a3creborn'] = array(
+    	'title' => 'Aktualizuj A3CReborn',
+    	'link' => "index.php?module=config-plugins&amp;action=update_a3creborn",
+    	'description' => 'Aktualizuj plugin A3CReborn'
+    );
+
+    return $tabs;
+}
+
+// admin_config_plugins_begin
+// Handles plugin update action
+$plugins->add_hook("admin_config_plugins_begin", "A3CReborn_admin_config_plugins_begin");
+function A3CReborn_admin_config_plugins_begin() {
+    global $mybb;
+
+    // Exit if not our update action
+    if ($mybb->input['action'] != 'update_a3creborn') return;
+
+    require A3CREBORN_PLUGIN_ROOT.'/functions.php';
+
+    // Check if update needed
+    if (!is_plugin_update_needed()) return;
+
+    // Check if plugin templates ready
+    if (!plugin_templates_ready()) {
+        flash_message('Szablony pluginu nie zostały przygotowane. Zbuduj webapkę zanim zaktualizujesz plugin.', 'error');
+        admin_redirect("index.php?module=config-plugins");
+        return;
+    }
+
+    // Perform update
+    update_plugin();
+
+    // Show confirmation
+    flash_message('Aktualizacja przebiegła pomyślnie', 'success');
+    admin_redirect("index.php?module=config-plugins");
+}

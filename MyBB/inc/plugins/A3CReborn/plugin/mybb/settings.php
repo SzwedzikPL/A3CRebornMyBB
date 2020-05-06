@@ -1,7 +1,6 @@
 <?php
-$is_dev = is_dev_instance();
 
-$mybb_settings = [
+return [
     // default board language
     'bblanguage' => 'polish',
     // disable language selection
@@ -11,9 +10,9 @@ $mybb_settings = [
     // enable seo urls
     'seourls' => 'yes',
     // show template start/end comments only on dev
-    'tplhtmlcomments' => $is_dev,
+    'tplhtmlcomments' => is_dev_instance(),
     // minify css if not dev
-    'minifycss' => $is_dev,
+    'minifycss' => is_dev_instance(),
     // php date format
     'dateformat' => 'd-m-Y',
     // php time format
@@ -61,4 +60,3 @@ $mybb_settings = [
     // disable show team page
     'enableshowteam' => 0
 ];
-?>
