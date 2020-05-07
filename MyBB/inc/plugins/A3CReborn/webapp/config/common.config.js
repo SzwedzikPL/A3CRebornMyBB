@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const {VueLoaderPlugin} = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
   entry: {
@@ -12,6 +13,8 @@ const config = {
     memberProfile: path.join(__dirname, '../src/apps/memberProfile/memberProfile.js'),
     recruitmentForm: path.join(__dirname, '../src/apps/recruitmentForm/recruitmentForm.js'),
     stats: path.join(__dirname, '../src/apps/stats/stats.js'),
+    shoutbox: path.join(__dirname, '../src/apps/shoutbox/shoutbox.js'),
+    theme: path.join(__dirname, '../src/apps/theme/theme.js'),
   },
   output: {
     path: path.join(__dirname, '../dist'),
@@ -22,23 +25,20 @@ const config = {
       {
         test: /\.vue$/,
         use: {
-          loader: 'vue-loader',
-          options: {
-            extractCSS: process.env.NODE_ENV === 'production',
-            loaders: {
-              sass: 'vue-style-loader!css-loader!sass-loader',
-              scss: 'vue-style-loader!css-loader!sass-loader'
-            }
-          }
+          loader: 'vue-loader'
         }
       },
       {
         test: /\.css$/i,
-        use: ['vue-style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.s[ac]ss$/i,
-        use: ['vue-style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ],
       },
       {
         test: /\.node$/,
@@ -76,6 +76,11 @@ const config = {
   },
   plugins: [
     new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false,
+    }),
     new HtmlWebpackPlugin({
       filename: 'gamercp_page.html',
       chunks: ['gamercp'],
@@ -106,6 +111,22 @@ const config = {
       chunks: ['stats'],
       template: path.resolve(__dirname, '../src/apps/stats/stats.html'),
     }),
+    new HtmlWebpackPlugin({
+      filename: 'index_shoutbox.html',
+      chunks: ['shoutbox'],
+      template: path.resolve(__dirname, '../src/apps/shoutbox/shoutbox.html'),
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index_shoutbox.html',
+      chunks: ['shoutbox'],
+      template: path.resolve(__dirname, '../src/apps/shoutbox/shoutbox.html'),
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'header_include.html',
+      chunks: ['theme'],
+      inject: false,
+      template: path.resolve(__dirname, '../src/apps/theme/include.ejs'),
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': `"${process.env.NODE_ENV || 'development'}"`
     }),
@@ -121,13 +142,12 @@ const config = {
     ],
     alias: {
       '@': path.resolve(__dirname, '../src'),
-      '@gamercp': path.resolve(__dirname, '../src/apps/gamercp'),
+      '@theme': path.resolve(__dirname, '../src/apps/theme'),
     },
     extensions: ['.js', '.vue', '.json', '.css']
   },
   optimization: {
     splitChunks: {
-      // include all types of chunks
       chunks: 'all'
     }
   },

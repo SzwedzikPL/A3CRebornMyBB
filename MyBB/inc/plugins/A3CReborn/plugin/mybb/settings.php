@@ -10,9 +10,9 @@ return [
     // enable seo urls
     'seourls' => 'yes',
     // show template start/end comments only on dev
-    'tplhtmlcomments' => is_dev_instance(),
+    'tplhtmlcomments' => (int)is_dev_instance(),
     // minify css if not dev
-    'minifycss' => is_dev_instance(),
+    'minifycss' => (int)is_dev_instance(),
     // php date format
     'dateformat' => 'd-m-Y',
     // php time format
@@ -26,7 +26,7 @@ return [
     // avatar size in posts
     'postmaxavatarsize' => '120x120',
     // default avatar
-    'useravatar' => 'images/default_avatar.png',
+    'useravatar' => 'assets/a3creborn/static/default_avatar?v='.plugin_version(),
     // default avatar dimensions
     'useravatardims' => '120x120',
     // avatar max dimensions

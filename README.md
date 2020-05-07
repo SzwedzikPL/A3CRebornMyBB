@@ -15,6 +15,7 @@ MyBB theme, plugin, scripts & setup for [Arma3Coop.pl](https://arma3coop.pl) com
 - [Harven](https://github.com/michalpietryka): database, laravel backend.
 
 ## Credits
+MyBB script by [MyBB Group](https://mybb.com/).  
 MyBB setup includes polish language pack by [webboard.pl](https://webboard.pl/) downloaded from [mybb repository](https://community.mybb.com/mods.php?action=view&pid=920).
 
 ## License

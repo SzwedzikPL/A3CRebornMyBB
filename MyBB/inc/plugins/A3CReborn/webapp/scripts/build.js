@@ -10,10 +10,12 @@ const fs = require('fs');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 
+const distPath = path.resolve(__dirname, '..', 'dist');
+const distStaticPath = path.resolve(distPath, 'static');
+
 function move_templates() {
   console.log('Moving templates to plugin...\n');
 
-  const distPath = path.resolve(__dirname, '..', 'dist');
   const templatesPath = path.resolve(__dirname, '..', '..', 'plugin', 'templates');
 
   fs.readdirSync(distPath).forEach(file => {
@@ -31,6 +33,42 @@ function move_templates() {
   });
 
   console.log('\nAll templates moved\n');
+}
+
+function copyFileSync(source, target) {
+  let targetFile = target;
+
+  if (fs.existsSync(target) && fs.lstatSync(target).isDirectory())
+    targetFile = path.join(target, path.basename(source));
+
+  console.log(`> ${path.relative(distStaticPath, targetFile)}`);
+
+  fs.writeFileSync(targetFile, fs.readFileSync(source));
+}
+
+function copyFolderRecursiveSync(source, target) {
+  const targetFolder = path.join(target, path.basename(source));
+  if (!fs.existsSync(targetFolder)) fs.mkdirSync(targetFolder);
+
+  if (fs.lstatSync(source).isDirectory()) {
+    const files = fs.readdirSync(source);
+    files.forEach(file => {
+      const fileSource = path.join(source, file);
+      if (fs.lstatSync(fileSource).isDirectory())
+        copyFolderRecursiveSync(fileSource, targetFolder);
+      else
+        copyFileSync(fileSource, targetFolder);
+    });
+  }
+}
+
+function copy_static_files() {
+  console.log('Copying static files...\n');
+
+  // Copy all static files
+  copyFolderRecursiveSync(path.resolve(__dirname, '..', 'src', 'static'), distPath);
+
+  console.log('\nStatic files copied\n');
 }
 
 function logError(data) {
@@ -85,6 +123,7 @@ if (!WATCH) {
     }
     logStats(stats);
     move_templates();
+    copy_static_files();
     console.log(`Building ${ENV} bundle done\n`);
     process.exit();
   });
@@ -105,6 +144,7 @@ compiler.watch({}, (error, stats) => {
 
   logStats(stats);
   move_templates();
+  copy_static_files();
 
   console.log(`Building ${ENV} bundle done. Watching for changes...\n`);
 });

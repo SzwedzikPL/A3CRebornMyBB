@@ -48,14 +48,20 @@ function install_plugin_theme() {
         return;
     }
 
-    // Set theme as default
-    $theme_query = $db->simple_select("themes", "*", "tid='".$theme_id."'");
+    // Reset default theme
+    $db->update_query("themes", array('def' => 0));
+
+    // Get theme data
+    $theme_query = $db->simple_select("themes", "*", "tid='{$theme_id}'");
 	$theme = $db->fetch_array($theme_query);
 
-    $cache->update('default_theme', $theme);
+    // Set theme as default
+    $db->update_query("themes", array(
+        'def' => 1,
+    ), "tid='{$theme_id}'");
 
-	$db->update_query("themes", array('def' => 0));
-	$db->update_query("themes", array('def' => 1), "tid='".$theme_id."'");
+    // Update cache
+    $cache->update('default_theme', $theme);
 
     // Set theme for existing users
     $updated_users = ["style" => $theme_id];

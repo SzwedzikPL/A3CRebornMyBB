@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <theme name="A3CReborn" version="1822">
 	<properties>
-		<templateset><![CDATA[17]]></templateset>
+		<templateset><![CDATA[34]]></templateset>
+		<editortheme><![CDATA[mybb.css]]></editortheme>
 		<imgdir><![CDATA[images]]></imgdir>
-		<logo><![CDATA[images/logo.png]]></logo>
+		<logo><![CDATA[assets/a3creborn/static/logo.png]]></logo>
 		<tablespace><![CDATA[5]]></tablespace>
 		<borderwidth><![CDATA[0]]></borderwidth>
-		<editortheme><![CDATA[mybb.css]]></editortheme>
+		<color><![CDATA[]]></color>
 		<disporder><![CDATA[a:7:{s:10:"global.css";i:1;s:10:"usercp.css";i:2;s:9:"modcp.css";i:3;s:16:"star_ratings.css";i:4;s:14:"showthread.css";i:5;s:17:"thread_status.css";i:6;s:8:"css3.css";i:7;}]]></disporder>
 	</properties>
 	<stylesheets>
@@ -1338,7 +1339,7 @@ $(function() {
 </ol>
 <br />
 {$lang->error_nopermission_user_username}]]></template>
-		<template name="footer" version="1820"><![CDATA[<debugstuff>
+		<template name="footer" version="1822"><![CDATA[<debugstuff>
 	</div>
 </div>
 <div id="footer">
@@ -1359,7 +1360,7 @@ $(function() {
 	</div>
 	<div class="lower">
 		<div class="wrapper">
-			<span id="current_time">{$lang->welcome_current_time}</span>
+			<span id="current_time"><a href="{$A3CReborn_website}" target="_blank" rel="noopener">A3CReborn {$A3CReborn_version}</a></span>
 			<span id="copyright">
 				<!-- MyBB is free software developed and maintained by a volunteer community.
 					It would be much appreciated by the MyBB Group if you left the full copyright and "powered by" notice intact,
@@ -1893,12 +1894,13 @@ $(".forumjump").on('change', function() {
 		<template name="global_remote_avatar_notice" version="1809"><![CDATA[<div class="red_alert"><a href="{$mybb->settings['bburl']}/usercp.php?action=avatar">{$lang->remote_avatar_disabled_default_avatar}</a></div>]]></template>
 		<template name="global_unreadreports" version="1820"><![CDATA[<a href="{$mybb->settings['bburl']}/modcp.php?action=reports">{$lang->unread_reports}</a>]]></template>
 		<template name="gobutton" version="120"><![CDATA[<input type="submit" class="button" value="{$lang->go}" />]]></template>
-		<template name="header" version="1820"><![CDATA[<div id="container">
+		<template name="header" version="1822"><![CDATA[<div id="container">
 		<a name="top" id="top"></a>
 		<div id="header">
+			<div id="logobg"></div>
 			<div id="logo">
 				<div class="wrapper">
-					<a href="{$mybb->settings['bburl']}/index.php"><img src="{$theme['logo']}" alt="{$mybb->settings['bbname']}" title="{$mybb->settings['bbname']}" /></a>
+					<a href="{$mybb->settings['bburl']}/index.php"><img src="{$theme['logo']}?v={$A3CReborn_version}" alt="{$mybb->settings['bbname']}" title="{$mybb->settings['bbname']}" class="logo-image" /></a>
 					<ul class="menu top_links">
 						{$menu_portal}
 						{$menu_search}
@@ -1916,6 +1918,7 @@ $(".forumjump").on('change', function() {
 					<!-- </div> in header_welcomeblock_member and header_welcomeblock_guest -->
 				<!-- </div> in header_welcomeblock_member and header_welcomeblock_guest -->
 			</div>
+			<div id="panelshadow"></div>
 		</div>
 		<div id="content">
 			<div class="wrapper">
@@ -1928,7 +1931,7 @@ $(".forumjump").on('change', function() {
 				{$awaitingusers}
 				<navigation>
 				<br />]]></template>
-		<template name="headerinclude" version="1820"><![CDATA[<link rel="alternate" type="application/rss+xml" title="{$lang->latest_threads} (RSS 2.0)" href="{$mybb->settings['bburl']}/syndication.php" />
+		<template name="headerinclude" version="1822"><![CDATA[<link rel="alternate" type="application/rss+xml" title="{$lang->latest_threads} (RSS 2.0)" href="{$mybb->settings['bburl']}/syndication.php" />
 <link rel="alternate" type="application/atom+xml" title="{$lang->latest_threads} (Atom 1.0)" href="{$mybb->settings['bburl']}/syndication.php?type=atom1.0" />
 <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
 <meta http-equiv="Content-Script-Type" content="text/javascript" />
@@ -1977,7 +1980,8 @@ $(".forumjump").on('change', function() {
 	var spinner = "<img src='" + spinner_image +"' alt='' />";
 	var modal_zindex = 9999;
 // -->
-</script>]]></template>
+</script>
+{$A3CReborn_header_include}]]></template>
 		<template name="header_menu_calendar" version="1800"><![CDATA[<li><a href="{$mybb->settings['bburl']}/calendar.php" class="calendar">{$lang->toplinks_calendar}</a></li>]]></template>
 		<template name="header_menu_memberlist" version="1800"><![CDATA[<li><a href="{$mybb->settings['bburl']}/memberlist.php" class="memberlist">{$lang->toplinks_memberlist}</a></li>]]></template>
 		<template name="header_menu_portal" version="1800"><![CDATA[<li><a href="{$mybb->settings['bburl']}/portal.php" class="portal">{$lang->toplinks_portal}</a></li>]]></template>
@@ -2063,7 +2067,7 @@ $(".forumjump").on('change', function() {
 <li><a href="{$mybb->settings['bburl']}/search.php?action=getdaily">{$lang->welcome_todaysposts}</a></li>]]></template>
 		<template name="header_welcomeblock_member_user" version="1809"><![CDATA[<li><a href="{$mybb->settings['bburl']}/usercp.php" class="usercp">{$lang->welcome_usercp}</a></li>]]></template>
 		<template name="htmldoctype" version="120"><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">]]></template>
-		<template name="index" version="1817"><![CDATA[<html>
+		<template name="index" version="1822"><![CDATA[<html>
 <head>
 <title>{$mybb->settings['bbname']}</title>
 {$headerinclude}
@@ -2076,7 +2080,18 @@ $(".forumjump").on('change', function() {
 </head>
 <body>
 {$header}
-{$forums}
+<div class="index-content">
+	<div class="index-column-forums">
+	{$forums}
+	</div>
+	<div class="index-column-sidebar">
+	[Kalendarz]<br />
+	[Nadchodzące misje]<br />
+	[Nowe posty/Tematy]<br />
+	[Streamy jeśli są online]<br />
+	[Kanał A3C na YT]<br />
+	</div>
+</div>
 {$boardstats}
 
 <dl class="forum_legend smalltext">

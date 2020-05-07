@@ -1,0 +1,156 @@
+body {
+  background: #0a0a0a url('~@theme/assets/bg-texture.png');
+}
+//
+// a:link {
+//   color: #8e8e8e;
+// }
+//
+// .post,.post.classic {
+//   .post_author {
+//     background: #191919;
+//     border: 0;
+//     border-radius: 0;
+//   }
+// }
+//
+// #header {
+//   position: relative;
+//   background: #000;
+//   height: 277px;
+//
+//   #logobg {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     overflow: hidden;
+//     background: #000 url("");
+//     z-index: 0;
+//     opacity: 0.6;
+//
+//     img {
+//       opacity: 0.6;
+//     }
+//   }
+//
+//   #logo {
+//     position: relative;
+//     background: transparent;
+//     border: 0;
+//     z-index: 0;
+//     padding: 0;
+//
+//     &::before {
+//       content: ' ';
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       width: 100%;
+//       height: 0;
+//       box-shadow: rgba(255, 255, 255, 0.15) 0px 0px 125px 33px;
+//       z-index: 1;
+//     }
+//
+//     img.logo-image {
+//       width: 237px;
+//       height: 245px;
+//       margin-left: 35px;
+//
+//     }
+//
+//     ul.top_links {
+//       position: absolute;
+//       bottom: 20px;
+//       right: 0;
+//     }
+//   }
+//
+//   #panel {
+//     position: relative;
+//     z-index: 2;
+//     height: 53px;
+//     margin-top: -10px;
+//     padding-top: 6px;
+//     background: url('~@theme/assets/menu-bg.png');
+//
+//     .upper {
+//       background: transparent;
+//       border: 0;
+//     }
+//     .lower {
+//       background: #1d1d1d;
+//       border-top: 1px solid #393939;
+//     }
+//   }
+// }
+//
+// #panelshadow {
+//   position: absolute;
+//   z-index: 1;
+//   bottom: -14px;
+//   width: 100%;
+//   height: 34px;
+//   box-shadow: #000000 0px 3px 11px 0px;
+// }
+//
+//
+// #content {
+//   background: transparent;
+//   margin-top: 20px;
+// }
+//
+// .tborder {
+//   background: #1d1d1d;
+//   border: 1px solid #24262b;
+// }
+//
+// .thead {
+//   background: none;
+//   border: 0;
+// }
+//
+// .tcat {
+//   background: none;
+//   border: 0;
+//   color: #5a5f65;
+// }
+//
+// .trow1 {
+//   background: #191919;
+//   border: 0;
+// }
+//
+// .tfoot {
+//   background: none;
+//   border: 0;
+// }
+//
+// table {
+//   color: #797979;
+// }
+//
+// #footer .upper {
+//   background: none;
+//   border: 0;
+// }
+//
+.index-content {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+
+  & > .index-column-forums {
+    flex-grow: 1;
+    margin-right: 20px;
+  }
+
+  & > .index-column-sidebar {
+    width: 250px;
+    height: 300px;
+    text-align: center;
+    background: #1d1d1d;
+    color: #5a5f65;
+  }
+}

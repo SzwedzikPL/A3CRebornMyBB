@@ -4,10 +4,13 @@
 // includes plugin version in global vars for templates
 $plugins->add_hook("global_start", "A3CReborn_global_start");
 function A3CReborn_global_start() {
-    global $A3CReborn_version;
+    global $templates, $A3CReborn_version, $A3CReborn_website, $A3CReborn_header_include;
 
     $info = require_once A3CREBORN_PLUGIN_ROOT.'/info.php';
     $A3CReborn_version = $info['version'];
+    $A3CReborn_website = $info['website'];
+
+    eval("\$A3CReborn_header_include = \"".$templates->get("a3creborn_header_include")."\";");
 }
 
 // newthread_start

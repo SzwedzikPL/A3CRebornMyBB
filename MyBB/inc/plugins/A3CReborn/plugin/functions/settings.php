@@ -64,9 +64,21 @@ function remove_plugin_settings() {
 function setup_mybb_settings() {
     global $db;
 
-    require A3CREBORN_PLUGIN_ROOT.'/mybb/settings.php';
+    $mybb_settings = require A3CREBORN_PLUGIN_ROOT.'/mybb/settings.php';
 
     foreach ($mybb_settings as $setting => $value) {
         $db->update_query("settings", ['value' => $value], "name='".$setting."'");
+    }
+}
+
+// Updates mybb settings
+function update_mybb_settings() {
+    global $db;
+
+    $mybb_settings = require A3CREBORN_PLUGIN_ROOT.'/mybb/settings.php';
+    $settings = ['useravatar'];
+
+    foreach ($settings as $setting) {
+        $db->update_query("settings", ['value' => $mybb_settings[$setting]], "name='".$setting."'");
     }
 }

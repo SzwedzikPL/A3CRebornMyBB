@@ -1,5 +1,6 @@
 <?php
 
+// Updates plugin version in db
 function set_plugin_version($isUpdate = false) {
     global $db;
 
@@ -15,6 +16,7 @@ function set_plugin_version($isUpdate = false) {
     }
 }
 
+// Returns true if plugin update is needed
 function is_plugin_update_needed() {
     global $db;
 
@@ -30,6 +32,7 @@ function is_plugin_update_needed() {
     return $info['version'] !== $currentVersion;
 }
 
+// Installs plugin
 function install_plugin() {
     global $db;
 
@@ -58,6 +61,7 @@ function install_plugin() {
     rebuild_settings();
 }
 
+// Updates plugin
 function update_plugin() {
     // Reinstall theme
     remove_plugin_theme();
@@ -76,6 +80,7 @@ function update_plugin() {
     rebuild_settings();
 }
 
+// Returns true if plugin is installed
 function is_plugin_installed() {
     global $db;
 
@@ -83,6 +88,7 @@ function is_plugin_installed() {
     return $db->field_exists('version', 'a3creborn');
 }
 
+// Uninstalls plugin
 function uninstall_plugin() {
     // Remove plugin tables
     remove_plugin_tables();
@@ -98,4 +104,10 @@ function uninstall_plugin() {
 
     // Rebuild settings
     rebuild_settings();
+}
+
+// Returns plugin version
+function plugin_version() {
+    $info = require A3CREBORN_PLUGIN_ROOT.'/info.php';
+    return $info['version'];
 }

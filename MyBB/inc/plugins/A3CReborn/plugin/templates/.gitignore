@@ -1,6 +1,4 @@
-gamercp_page.html
-cadrecp_page.html
-memberlist_page.html
-stats_page.html
-recruitment_form_page.html
-member_profile_page.html
+*
+!.gitignore
+!forumdisplay_newrecruitmentapplication.html
+!postbit_badge.html
